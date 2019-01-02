@@ -179,33 +179,6 @@ app.put('/api/users/switch/:id', checkAuth, (req, res, next) => {
     }).catch(err => {
         console.log('problemi nello update user: ', err);
     });
-
-  // User.updateOne({ _id: req.params.id, role: { $eq: 'basic' } }, { $set: { role: 'admin' } }, (err, raw) => {
-    //     if (err) {
-    //         res.status(400).json({ message: 'User update failed', errore: err });
-    //     }
-    //     else {
-    //         if (raw.n === 0) {
-    //             console.log('questo è il raw: ', raw);
-    //             User.updateOne({ _id: req.params.id, role: { $eq: 'admin' } }, { $set: { role: 'basic' } }, (err, raw) => {
-    //                 if (err) {
-    //                     return res.status(400).json({ message: 'Secondo tentativo di update fallito', errore: err });
-    //                 }
-    //                 console.log('Update riuscito al secondo tentativo');
-    //                 return res.status(200).json({ message: 'Msg from backend: Update successful', raw });
-    //             })
-    //         }
-    //         console.log('Update riuscito al primo tentativo');
-    //         return res.status(200).json({ message: 'Msg from backend: Update successful', raw });
-    //     }
-    // })
-
-
-    // .catch(err => {
-    //     console.log(err);
-    //     return res.status(400).json({ message: 'problemi con funzione edit' });
-    // })
-
 })
 
 app.put('/api/users/upgradeBattles/:id', checkAuth, (req, res, next) => {  // gestire l'incremento di partite giocate e vittorie con unico metodo

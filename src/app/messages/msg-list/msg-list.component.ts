@@ -61,58 +61,6 @@ export class MsgListComponent implements OnInit, OnDestroy {
         }, {});
     }
 
-    // funzione non usata (?):
-    getMyMsgs(autore: string) {     // porre: myMsgs = getMsgs(...) per popolare tale array con i messaggi del soggetto loggato
-        return { ...this.sortedMsgs[autore] };
-    }
-
-    // funzione non usata (?):
-    spartisci3(myMsgs, otherMsgs) {   // per spostare i myMsgs negli array con i relativi destinatari
-        for (let i = 0; i < myMsgs.length; i++) {
-            for (let j = 0; j < otherMsgs.length; j++) {
-                if (myMsgs[i].destinatario === otherMsgs[j][0].autore) {
-                    otherMsgs[j].push(myMsgs[i]);
-                    myMsgs.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-        if (myMsgs.length > 0) {
-            for (let i = 0; i < myMsgs.length; i++) {
-                const newArr = [];
-                newArr.push(myMsgs[i]);
-                otherMsgs.push(newArr);
-                myMsgs.splice(i, 1);
-                i--;
-            }
-        }
-    }
-
-    // funzione non usata (?):
-    spartisci4(myMsgs, otherMsgs) {   // per spostare i myMsgs negli array con i relativi destinatari
-        const newMsgs = JSON.parse(JSON.stringify(otherMsgs));
-        console.log('questi sono i newMsgs: ', newMsgs);
-        for (let i = 0; i < myMsgs.length; i++) {
-            for (let j = 0; j < otherMsgs.length; j++) {
-                if (myMsgs[i].destinatario === otherMsgs[j][0].autore) {
-                    newMsgs[j].push(myMsgs[i]);
-                    myMsgs.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-        if (myMsgs.length > 0) {
-            for (let i = 0; i < myMsgs.length; i++) {
-                const newArr = [];
-                newArr.push(myMsgs[i]);
-                otherMsgs.push(newArr);
-                myMsgs.splice(i, 1);
-                i--;
-            }
-        }
-        return newMsgs;
-    }
-
     spartisci(sortedMsgs) {
         if (sortedMsgs[this.loggedEmail]) {
             sortedMsgs[this.loggedEmail].forEach(msg => {
