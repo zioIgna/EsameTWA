@@ -1,0 +1,5 @@
+<p class="mat-title">Ecco le partite cui puoi prendere parte</p>
+<app-game-list></app-game-list>
+<mat-card *ngIf="!alreadyWaiting">
+  <p class="mat-title">Oppure crea una tua partita<button mat-icon-button color="primary" (click)="onCreateGame()"><i class="material-icons">add_circle</i></button></p>
+</mat-card>

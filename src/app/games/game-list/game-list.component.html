@@ -1,0 +1,10 @@
+<mat-nav-list *ngIf="playableGames?.length; else noGames">
+  <mat-list-item *ngFor="let game of playableGames">
+    <div>{{game}} <button mat-icon-button color="primary" (click)="onStartBattle(game)"><i class="material-icons">launch</i></button></div>
+  </mat-list-item>
+</mat-nav-list>
+
+
+<ng-template #noGames>
+  <p class="mat-subheading-2">Non ci sono partite in attesa per ora...</p>
+</ng-template>

@@ -1,0 +1,44 @@
+<div class="mat-subheading-2">You are player {{binaryId}}</div>
+<div class="mat-subheading-2" *ngIf="!endGame && positionedShips == 2">E' il turno del giocatore <b>{{currPlayer}}</b></div>
+<div *ngIf="!endGame; else gameOver">
+  <div class="mat-subheading-2" *ngIf="this.boards[binaryId].player.shipsToPlace.length">
+    <div *ngIf="positionedShips < 2">Scegli l'orientamento della prossima nave (verticale di default):
+        <button mat-raised-button color="primary"
+          (click)="onSetHorizontal()">
+          Orizzontale <i class="material-icons">arrow_forward</i>
+        </button><button mat-raised-button color="primary"
+          (click)="onSetVertical()">
+          Verticale <i class="material-icons">arrow_downward</i>
+        </button>
+        <div>L'orientamento attuale è: <b>{{orientation}}</b></div>
+        <div>La prossima nave da posizionare è: {{this.boards[binaryId].player.shipsToPlace[0].id}}</div>
+    </div>
+  </div>
+  <div *ngFor="let board of boards; let i = index">
+    <mat-card *ngIf="(i == binaryId && positionedShips < 2) || positionedShips > 1">
+      <p class="mat-subheading-2">Player: <b>{{board.player.id}}</b></p>
+      <table>
+        <tr *ngFor="let row of board.tiles; let j = index">
+          <td *ngFor="let col of row; let k = index"
+            (click) = "onGetPosition($event)"
+            [class.show-ship]="binaryId == i && col.used"
+            id="t{{i}}{{j}}{{k}}" title={{onGetMyBattle()}}>
+              {{col.value}}
+          </td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #gameOver>
+  <div *ngIf="!playerDisconnected; else unexpectedEnd">
+    <div class="mat-subheading-2">Game Over!</div>
+    <div class="mat-subheading-1">The winner is: <b>player {{currPlayer}}</b></div>
+  </div>
+</ng-template>
+
+<ng-template #unexpectedEnd>
+  <div class="mat-subheading-2">Your opponent just disconnected!</div>
+  <div class="mat-subheading-2">No one wins</div>
+</ng-template>

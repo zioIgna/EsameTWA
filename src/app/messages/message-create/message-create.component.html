@@ -1,0 +1,14 @@
+<mat-card>
+    <p class="mat-title">Invia un nuovo messaggio </p>
+    <mat-form-field>
+        <textarea matInput cols="6" [(ngModel)]="contenuto" placeholder="contenuto"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Destinatario" [(ngModel)]="destinatario">
+            <mat-option *ngFor="let recipient of recipients" [value]="recipient.email">
+              {{recipient.email}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field> 
+    <button mat-raised-button color="primary" (click)="onSend()">Invia</button>
+</mat-card>

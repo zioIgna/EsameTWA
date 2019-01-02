@@ -1,0 +1,13 @@
+<mat-accordion multi="true" *ngIf="finalMsgs.length > 0">
+    <p class="mat-title">Ecco le tue conversazioni</p>
+    <mat-expansion-panel *ngFor="let array of finalMsgs" [expanded] = "true">
+        <mat-expansion-panel-header>
+            {{array[0].autore === this.loggedEmail? array[0].destinatario : array[0].autore}}
+        </mat-expansion-panel-header>
+        <p class="mat-body-1" *ngFor="let text of array" [ngStyle]="{'text-align': text.autore === this.loggedEmail ? 'right' : 'left'}">
+            <small>Mitt:</small> {{text.autore}}
+            <br><small>Testo:</small> {{text.contenuto}}
+            <br><small>{{text.timeStamp}}</small>
+        </p>
+    </mat-expansion-panel>
+</mat-accordion>

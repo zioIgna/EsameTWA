@@ -1,0 +1,16 @@
+<mat-accordion multi="true" *ngIf="users.length > 0">
+    <p class="mat-title">Benvenuto {{loggedUserEmail}}! </p>
+    <p class="mat-subheading-2">Questi sono gli utenti registrati</p>
+    <mat-expansion-panel *ngFor="let user of users">
+        <mat-expansion-panel-header>
+            {{user.email}}
+        </mat-expansion-panel-header>
+        <p>Ruolo: <b>{{user.ruolo}}</b></p>
+        <p>Partite vinte: <b>{{user.score}}</b></p>
+        <p>Partite giocate: <b>{{user.battlesCount}}</b></p>
+        <mat-action-row>
+            <button mat-button color="primary" (click)="onSwitch(user._id, user.ruolo)" *ngIf="isAdmin && user._id !== loggedUserId"><i class="material-icons">swap_horizontal_circle</i> SwitchRole</button>
+            <button mat-button color="warn" (click)="onDelete(user._id)" *ngIf="user._id === loggedUserId || isAdmin"><i class="material-icons">delete</i> Delete</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>
